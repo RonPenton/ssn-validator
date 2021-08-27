@@ -68,7 +68,6 @@
   },
   "exclude": [
       "test",
-      "dist",
-      "test-d"
+      "dist"
   ]
 }

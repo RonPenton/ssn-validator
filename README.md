@@ -1,14 +1,12 @@
-# ssn-validator
+# ssn-validation
 Validate and mask a U.S. Social Security Number (SSN).
-
-## Status
-[![npm version][npm-image]][npm-url] [![build status][travis-image]][travis-url]
+Validate and mask Canadian SIN's too.
 
 ## Installation
 Install the package via `npm`:
 
 ```sh
-npm install ssn-validator --save
+npm install ssn-validation --save
 ```
 
 ## Usage
@@ -72,13 +70,6 @@ To test using a local installation of `node.js`:
 ```sh
 npm test
 ```
-
-## Release
-
-```sh
-npm version [<newversion> | major | minor | patch] -m "Release %s"
-```
-
 ## License
 MIT
 

@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-import { isValid, mask } from '../src';
+import { ssn } from '../src';
 
 /**
  * `Social Security Number` samples.
@@ -20,38 +20,38 @@ const numbers = {
 describe('SsnValidator', () => {
     describe('isValid()', () => {
         it('should return `false` if number is invalid', () => {
-            numbers.invalid.forEach(number => expect(isValid(number)).toBe(false));
+            numbers.invalid.forEach(number => expect(ssn.isValid(number)).toBe(false));
         });
 
         it('should return `true` if number is valid', () => {
-            numbers.valid.forEach(number => expect(isValid(number)).toBe(true));
+            numbers.valid.forEach(number => expect(ssn.isValid(number)).toBe(true));
         });
     });
 
     describe('mask()', () => {
         it('should throw an error if value is invalid', () => {
             try {
-                mask(numbers.invalid[0]);
+                ssn.mask(numbers.invalid[0]);
 
                 fail('Test should not reach this');
-            } catch (e) {
+            } catch (e: any) {
                 expect(e).toBeInstanceOf(Error);
                 expect(e.message).toBe('Invalid Social Security Number');
             }
         });
 
         it('should mask a valid value', () => {
-            expect(mask(numbers.valid[0])).toBe('XXX-XX-4567');
-            expect(mask(numbers.valid[1])).toBe('XXX-XX 4567');
-            expect(mask(numbers.valid[2])).toBe('XXX XX 4567');
-            expect(mask(numbers.valid[3])).toBe('XXXXX4567');
+            expect(ssn.mask(numbers.valid[0])).toBe('XXX-XX-4567');
+            expect(ssn.mask(numbers.valid[1])).toBe('XXX-XX 4567');
+            expect(ssn.mask(numbers.valid[2])).toBe('XXX XX 4567');
+            expect(ssn.mask(numbers.valid[3])).toBe('XXXXX4567');
         });
 
         it('should mask all digits', () => {
-            expect(mask(numbers.valid[0], 'allDigits')).toBe('XXX-XX-XXXX');
-            expect(mask(numbers.valid[1], 'allDigits')).toBe('XXX-XX XXXX');
-            expect(mask(numbers.valid[2], 'allDigits')).toBe('XXX XX XXXX');
-            expect(mask(numbers.valid[3], 'allDigits')).toBe('XXXXXXXXX');
+            expect(ssn.mask(numbers.valid[0], 'full')).toBe('XXX-XX-XXXX');
+            expect(ssn.mask(numbers.valid[1], 'full')).toBe('XXX-XX XXXX');
+            expect(ssn.mask(numbers.valid[2], 'full')).toBe('XXX XX XXXX');
+            expect(ssn.mask(numbers.valid[3], 'full')).toBe('XXXXXXXXX');
         })
     });
 });
